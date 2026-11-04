@@ -39,3 +39,15 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# Backend dependencies
+/backend/node_modules/
+
+# Backend build output
+/backend/dist/
+/backend/coverage/
+
+# Environment files and secrets
+.env
+.env.*
+!.env.example
