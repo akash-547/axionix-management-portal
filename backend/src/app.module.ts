@@ -7,7 +7,7 @@ import { ContractorsModule } from './contractors/contractors.module';
 
 @Module({
   imports: [
-    ConfigModule.forRoot({ isGlobal: true }), // `.env` variables reading enable 
+    ConfigModule.forRoot({ isGlobal: true }), // Enables reading environment variables from `.env`
     SupabaseModule, ContractorsModule,
   ],
   controllers: [AppController],

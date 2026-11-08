@@ -10,14 +10,14 @@ export class SupabaseService {
     const supabaseKey = process.env.SUPABASE_SERVICE_ROLE_KEY;
 
     if (!supabaseUrl || !supabaseKey) {
-      throw new Error('Supabase URL ya Service Role Key backend .env file mein nahi mili!');
+      throw new Error('Supabase URL or Service Role Key was not found in the backend .env file!');
     }
 
-    // Supabase client initialize ho raha hai
+    // The Supabase client is being initialized.
     this.supabaseClient = createClient(supabaseUrl, supabaseKey);
   }
 
-  // Pure backend mein jahan bhi Supabase connection chahiye hoga, yeh function client return karega
+  // This function returns the client wherever a Supabase connection is needed in the backend.
   getClient(): SupabaseClient {
     return this.supabaseClient;
   }

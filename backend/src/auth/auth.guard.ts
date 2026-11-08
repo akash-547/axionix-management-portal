@@ -30,7 +30,7 @@ export class AuthGuard implements CanActivate {
       throw new UnauthorizedException('Invalid or expired Token!');
     }
 
-    // Authenticated user ki details request object par attach ho rahi hain
+    // Authenticated user details are attached to the request object.
     request.user = user;
     return true;
   }

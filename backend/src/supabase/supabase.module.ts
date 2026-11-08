@@ -4,6 +4,6 @@ import { SupabaseService } from './supabase.service';
 @Global()
 @Module({
   providers: [SupabaseService],
-  exports: [SupabaseService], // Isse doosre modules SupabaseService use kar sakein ge
+  exports: [SupabaseService], // Allows other modules to use SupabaseService
 })
 export class SupabaseModule {}

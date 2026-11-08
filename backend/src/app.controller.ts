@@ -21,7 +21,7 @@ export class AppController {
   getProfile(@Request() req) {
     const user = req.user;
     
-    // Supabase metadata se role detect ho raha hai
+    // The role is detected from Supabase metadata.
     const role = user.user_metadata?.role || user.app_metadata?.role || 'Contractor';
 
     return {
