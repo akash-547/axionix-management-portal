@@ -1,4 +1,11 @@
-import { Controller, Get, UseGuards, Request } from '@nestjs/common';
+
+import {
+  Controller,
+  Get,
+  UseGuards,
+  Request,
+  UnauthorizedException,
+} from '@nestjs/common';
 import { AppService } from './app.service';
 import { AuthGuard } from './auth/auth.guard';
 
@@ -20,14 +27,18 @@ export class AppController {
   @Get('whoami')
   getProfile(@Request() req) {
     const user = req.user;
-    
-    // The role is detected from Supabase metadata.
-    const role = user.user_metadata?.role || user.app_metadata?.role || 'Contractor';
+
+    // Read the role only from trusted Supabase app_metadata.
+    const role = user.app_metadata?.role;
+
+    if (!['Admin', 'Contractor'].includes(role)) {
+      throw new UnauthorizedException('Invalid or missing user role');
+    }
 
     return {
       id: user.id,
       email: user.email,
-      role: role,
+      role,
       message: 'Authenticated successfully',
     };
   }
